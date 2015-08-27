@@ -1,9 +1,9 @@
 ﻿using Messier16.Forms.Plugin;
+using Messier16.Forms.Plugin.Xparse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Xamarin.Forms;
 
 namespace Watchduino
@@ -12,20 +12,23 @@ namespace Watchduino
     {
         public App()
         {
-            var message = new PushParse();
-
+            CrossParse cp = new CrossParse();
+            cp.SuscribeAsync();
+            cp.InitializeClient("SrsOx5oaNWLszFoOVjTAJY3XK56ZcfZsjQxYGTWK", "71OE1UfHgIYkLar1A2vJPt7HEzwlH6natzLGmHa2");
             var btn = new Button() { Text = "Push me" };
-            btn.Clicked += (s, a) => { message.ShowMessage("Helllllo"); };
+            var lbl = new Label
+            {
+                XAlign = TextAlignment.Center,
+                Text = "Welcome to Xamarin Forms!"
+            };
+            cp.OnPushReceived += (dic) => { lbl.Text = dic["alert"].ToString(); };
             MainPage = new ContentPage
             {
                 Content = new StackLayout
                 {
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
-                        new Label {
-                            XAlign = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        },
+                        lbl,
                         btn
                     }
                 }

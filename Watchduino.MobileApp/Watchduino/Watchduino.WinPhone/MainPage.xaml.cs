@@ -20,12 +20,7 @@ namespace Watchduino.WinPhone
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new Watchduino.App());
 
-            Parse.ParsePush.ParsePushNotificationReceived += ParsePush_ParsePushNotificationReceived;
         }
 
-        private void ParsePush_ParsePushNotificationReceived(object sender, Parse.ParsePushNotificationEventArgs e)
-        {
-            ;
-        }
     }
 }

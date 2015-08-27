@@ -39,14 +39,14 @@ namespace Watchduino.WinPhone
             // Parse stuffffff
             ParseClient.Initialize("SrsOx5oaNWLszFoOVjTAJY3XK56ZcfZsjQxYGTWK", "71OE1UfHgIYkLar1A2vJPt7HEzwlH6natzLGmHa2");
 
-            this.Startup += async (sender, args) => {
-                // This optional line tracks statistics around app opens, including push effectiveness:
-                ParseAnalytics.TrackAppOpens(RootFrame);
+            //this.Startup += async (sender, args) => {
+            //    // This optional line tracks statistics around app opens, including push effectiveness:
+            //    ParseAnalytics.TrackAppOpens(RootFrame);
 
-                // By convention, the empty string is considered a "Broadcast" channel
-                // Note that we had to add "async" to the definition to use the await keyword
-                await ParsePush.SubscribeAsync("");
-            };
+            //    // By convention, the empty string is considered a "Broadcast" channel
+            //    // Note that we had to add "async" to the definition to use the await keyword
+            //    await ParsePush.SubscribeAsync("");
+            //};
 
         }
 
