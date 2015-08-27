@@ -10,18 +10,20 @@ namespace Watchduino
 {
     public class App : Application
     {
+        public CrossParse Parse { get; private set; }
         public App()
         {
-            CrossParse cp = new CrossParse();
-            cp.SuscribeAsync();
-            cp.InitializeClient("SrsOx5oaNWLszFoOVjTAJY3XK56ZcfZsjQxYGTWK", "71OE1UfHgIYkLar1A2vJPt7HEzwlH6natzLGmHa2");
+            Parse = new CrossParse();
+            Parse.InitializeClient(ParseKeys.AppId,
+                ParseKeys.NetKey);
+            Parse.SuscribeAsync();
             var btn = new Button() { Text = "Push me" };
             var lbl = new Label
             {
                 XAlign = TextAlignment.Center,
                 Text = "Welcome to Xamarin Forms!"
             };
-            cp.OnPushReceived += (dic) => { lbl.Text = dic["alert"].ToString(); };
+            Parse.OnPushReceived += (dic) => { lbl.Text = dic["alert"].ToString(); };
             MainPage = new ContentPage
             {
                 Content = new StackLayout
@@ -37,7 +39,6 @@ namespace Watchduino
 
         protected override void OnStart()
         {
-            // Handle when your app starts
         }
 
         protected override void OnSleep()
