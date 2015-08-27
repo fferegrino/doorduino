@@ -4,26 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Watchduino
 {
     public class App : Application
     {
-        public CrossParse Parse { get; private set; }
         public App()
         {
-            Parse = new CrossParse();
-            Parse.InitializeClient(ParseKeys.AppId,
-                ParseKeys.NetKey);
-            Parse.SuscribeAsync();
-            var btn = new Button() { Text = "Push me" };
+            var btn = new Button() { Text = "Suscribir" };
             var lbl = new Label
             {
                 XAlign = TextAlignment.Center,
                 Text = "Welcome to Xamarin Forms!"
             };
-            Parse.OnPushReceived += (dic) => { lbl.Text = dic["alert"].ToString(); };
+            btn.Clicked += async (sender, args) =>
+            {
+                await CrossParse.SuscribeAsync();
+                lbl.Text = "Listo";
+                CrossParse.AddParsePushNotificationReceivedListener();
+                CrossParse.OnPushReceived += (s,a) =>
+                {
+                    lbl.Text = a.Payload["alert"].ToString();
+                };
+            };
             MainPage = new ContentPage
             {
                 Content = new StackLayout
@@ -39,6 +44,7 @@ namespace Watchduino
 
         protected override void OnStart()
         {
+            CrossParse.InitializeClient(ParseKeys.AppId, ParseKeys.NetKey);
         }
 
         protected override void OnSleep()
