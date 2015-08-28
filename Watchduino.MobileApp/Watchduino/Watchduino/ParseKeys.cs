@@ -9,8 +9,8 @@ namespace Watchduino
     internal class ParseKeys
     {
 
-        public const string NetKey = "";
+        public const string NetKey = "QtIGarZR0eRxOwLX8slPgmK1ap2URpRrtgLjPQCC";
 
-        public const string AppId = "";
+        public const string AppId = "WgOp9IjzsAJ4sbWqzLBRkdTCRJq1PefiKwRD0dOI";
     }
 }
