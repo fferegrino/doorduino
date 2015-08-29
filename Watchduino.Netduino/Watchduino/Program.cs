@@ -7,84 +7,50 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using SecretLabs.NETMF.Hardware;
 using SecretLabs.NETMF.Hardware.NetduinoPlus;
+using Messier16.Parse.DotNetMf;
 
 namespace Watchduino
 {
     public class Program
     {
-
-        static bool open;
-        static InterruptPort DoorSwitch;
-        static Stopwatch stopWatch;
-        static int seconds;
-        static NewDisplay display;
-        static bool wasOpen;
-
+        static ParseClient pc;
         public static void Main()
         {
+            // wait for DHCP-allocated IP address and turn
+            while (IPAddress.GetDefaultLocalAddress() == IPAddress.Any);
 
-            var DoorSwitch = new InterruptPort(Pins.GPIO_PIN_D0, true, Port.ResistorMode.PullDown, Port.InterruptMode.InterruptEdgeBoth);
-            stopWatch = Stopwatch.StartNew(); // new Stopwatch();
+            pc = new ParseClient("[Here goes your Parse Application ID]", "[Here goes your Parse REST API Key]");
 
-            display = new NewDisplay(Pins.GPIO_PIN_D1,
-                                                Pins.GPIO_PIN_D2,
-                                                Pins.GPIO_PIN_D3,
-                Pins.GPIO_PIN_D4, Pins.GPIO_PIN_D5, Pins.GPIO_PIN_D6, Pins.GPIO_PIN_D7, Pins.GPIO_PIN_D8);
+            var doorPort = new InputPort(Pins.GPIO_PIN_D0, true, Port.ResistorMode.PullDown); 
 
-
-
-            Thread dsp = new Thread(PrintDisplay);
-            dsp.Start();
-
-
-            wasOpen = DoorSwitch.Read();
-            if (wasOpen)
-            {
-                stopWatch.Start();
-            }
-            DoorSwitch.OnInterrupt += DoorSwitch_OnInterrupt;
-            //int  i = 0;
-            //while (i < 1000)
-            //{
-            //    i++;
-            //    seconds++;
-            //    Thread.Sleep(500);
-            //}
-
-            Thread.Sleep(Timeout.Infinite);
-        }
-
-
-        public static void PrintDisplay()
-        {
+            bool lastStatus = doorPort.Read();
+            bool currentStatus;
             while (true)
             {
-                display.PrintNumber(seconds);
+                currentStatus = doorPort.Read();
+                if (currentStatus != lastStatus)
+                {
+                    pc.SendPushToChannel((currentStatus ? "Someone closed the door" : "Someone opened the door"));
+                }
+                lastStatus = currentStatus;
             }
+            #region Interrupt port buggy implementation
+
+            //var doorPort = new InterruptPort(Pins.GPIO_PIN_D0, true, Port.ResistorMode.PullDown, Port.InterruptMode.InterruptEdgeBoth);
+            //doorPort.OnInterrupt += DoorSwitch_OnInterrupt;
+            //Thread.Sleep(Timeout.Infinite);
+
+            #endregion
         }
 
-        private static void DoorSwitch_OnInterrupt(uint data1, uint data2, DateTime time)
-        {
-            open = data2 == 1;
-            if (!open)
-            {
-                Debug.Print("Opened");
-                seconds = 0;
-                stopWatch.Start();
-            }
-            else
-            {
-                Debug.Print("Closed");
-                if (!wasOpen)
-                {
-                    stopWatch.Stop();
-                }
-                seconds = (int)stopWatch.ElapsedMilliseconds;
-                Debug.Print("Tiempo abierto: " + seconds);
-                stopWatch.Reset();
-                wasOpen = false;
-            }
-        }
+        //private static void DoorSwitch_OnInterrupt(uint data1, uint data2, DateTime time)
+        //{
+
+        //    bool closed = data2 == 1;
+        //    //Debug.Print((closed ? "Cerrado" : "Abierto"));
+        //    //pc.SendPushToChannel((closed ? "Cerrado" : "Abierto"));
+        //    Debug.Print((closed ? "Cerrado" : "Abierto"));
+        //}
 
     }
 }

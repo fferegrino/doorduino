@@ -10,7 +10,7 @@ namespace Messier16.Parse.DotNetMf.TestConsole
             ParseClient pc = new ParseClient("[Here goes AppId]", "[Here goes REST api key]");
 
 
-            pc.SendPushAlertToChanel("hola");
+            pc.SendPushToChannel("hola");
         }
     }
 }
