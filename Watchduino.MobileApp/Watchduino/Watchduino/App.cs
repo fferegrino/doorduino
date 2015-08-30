@@ -1,5 +1,4 @@
-﻿using Messier16.Forms.Plugin;
-using Messier16.Forms.Plugin.Xparse;
+﻿using Messier16.Forms.Plugin.Xparse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +23,7 @@ namespace Watchduino
                 await CrossParse.SuscribeAsync();
                 lbl.Text = "Listo";
                 CrossParse.AddParsePushNotificationReceivedListener();
-                CrossParse.OnPushReceived += (s,a) =>
+                CrossParse.OnPushReceived += (s, a) =>
                 {
                     lbl.Text = a.Payload["alert"].ToString();
                 };
@@ -44,7 +43,7 @@ namespace Watchduino
 
         protected override void OnStart()
         {
-            CrossParse.InitializeClient(ParseKeys.AppId, ParseKeys.NetKey);
+            //CrossParse.InitializeClient(ParseKeys.AppId, ParseKeys.NetKey);
         }
 
         protected override void OnSleep()
