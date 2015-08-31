@@ -5,10 +5,6 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doorduino", "Doorduino\Doorduino.csproj", "{1749A8D3-E84A-46E2-946A-CBEE2EFFCEFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messier16.Parse.DotNetMf", "Messier16.Parse.DotNetMf\Messier16.Parse.DotNetMf.csproj", "{788CC175-26C2-4E4B-9D67-E57B02063F57}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messier16.Parse.DotNetMf.TestConsole", "Messier16.Parse.DotNetMf.TestConsole\Messier16.Parse.DotNetMf.TestConsole.csproj", "{600077C7-5FEF-4437-ADA7-A1A866B8A3C9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,16 +17,6 @@ Global
 		{1749A8D3-E84A-46E2-946A-CBEE2EFFCEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1749A8D3-E84A-46E2-946A-CBEE2EFFCEFC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1749A8D3-E84A-46E2-946A-CBEE2EFFCEFC}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{788CC175-26C2-4E4B-9D67-E57B02063F57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{788CC175-26C2-4E4B-9D67-E57B02063F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{788CC175-26C2-4E4B-9D67-E57B02063F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{788CC175-26C2-4E4B-9D67-E57B02063F57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{600077C7-5FEF-4437-ADA7-A1A866B8A3C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{600077C7-5FEF-4437-ADA7-A1A866B8A3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{600077C7-5FEF-4437-ADA7-A1A866B8A3C9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{600077C7-5FEF-4437-ADA7-A1A866B8A3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{600077C7-5FEF-4437-ADA7-A1A866B8A3C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{600077C7-5FEF-4437-ADA7-A1A866B8A3C9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

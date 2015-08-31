@@ -36,6 +36,10 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Messier16.Parse.DotNetMf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\M16.Parse.DotNetMf.0.1.0.1\lib\netmf43\Messier16.Parse.DotNetMf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Hardware.PWM" />
     <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
@@ -46,9 +50,6 @@
     <Reference Include="System.Http" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messier16.Parse.DotNetMf\Messier16.Parse.DotNetMf.csproj">
-      <Project>{788CC175-26C2-4E4B-9D67-E57B02063F57}</Project>
-      <Name>Messier16.Parse.DotNetMf</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
